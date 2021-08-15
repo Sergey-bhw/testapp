@@ -17,16 +17,25 @@ use App\Models\Ad as Ad;
 
 Route::get('/', 'App\Http\Controllers\AdController@index');
 Route::get('/ad/{id}', function ($id) {
+    $ad = DB::table('ads')->where('id', $id)->first();
+    $isAuthor = false;
+    $user_id = Auth::id();
+    if($user_id == $ad->author_id) $isAuthor = true;
     return view('single', [
-        'ad' => DB::table('ads')->where('id', $id)->first()
+        'ad' => $ad,
+        'isAuthor' => $isAuthor
     ]);
 });
 Route::get('/newad', function () {
     return view('newad');
-});
-Route::get('/editad/{id}', 'App\Http\Controllers\AdController@edit');
+})->name('newad');
+Route::get('/editad/{id}', 'App\Http\Controllers\AdController@edit')->name('editad');
 
 Auth::routes();
 
 Route::post('/ad', 'App\Http\Controllers\AdController@store');
 Route::post('/editad/{id}', 'App\Http\Controllers\AdController@update');
+
+Route::get('/home', function () {
+    return redirect('/');
+});

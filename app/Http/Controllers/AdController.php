@@ -25,8 +25,8 @@ class AdController extends Controller
             $ads = DB::table('ads')->orderBy('title', $order)->paginate(2);
         }else if($sort == 'date'){
             $ads = DB::table('ads')->orderBy('created_at', $order)->paginate(2);
-        }else{ //default DATE ASC
-            $ads = DB::table('ads')->orderBy('created_at', $order)->paginate(2);
+        }else{ //default TITLE ASC
+            $ads = DB::table('ads')->orderBy('title', $order)->paginate(2);
         }
         $ads->appends(['sort' => $sort, 'order' => $order])->links();
         return view('home', compact('ads', 'sort', 'order'));
@@ -54,10 +54,13 @@ class AdController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'description' => 'required|max:1023',
+            'photo1' => 'image',
+            'photo2' => 'image',
+            'photo3' => 'image',
         ]);
 
         if ($validator->fails()) {
-            return redirect('/')
+            return redirect()->back()
                 ->withInput()
                 ->withErrors($validator);
         }
@@ -129,7 +132,7 @@ class AdController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect('/')
+            return redirect()->back()
                 ->withInput()
                 ->withErrors($validator);
         }
@@ -141,7 +144,7 @@ class AdController extends Controller
         $ad->description = $request->description;
         $ad->save();
 
-        return redirect('/');
+        return redirect()->back()->with('success', 'Advertising updated!');;
     }
 
     /**

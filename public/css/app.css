@@ -10002,3 +10002,55 @@ h3 {
     border-color: #dee2e6;
   }
 }
+nav.items-center {
+  text-align: center;
+  margin: 40px auto 0;
+}
+
+nav.items-center > div > div > span {
+  display: none;
+}
+
+nav.items-center > div > div > p {
+  margin-top: 20px;
+}
+
+img {
+  border-radius: 4px;
+}
+
+.home img {
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
+  margin-bottom: 20px;
+}
+
+.single img {
+  max-width: 90%;
+  display: block;
+  margin: 20px auto;
+}
+
+.editad img {
+  max-width: 200px;
+  margin: 15px;
+}
+
+.alert {
+  max-width: 80%;
+  margin: 20px;
+}
+
+.ad-item + .ad-item {
+  border-top: 1px dotted #888;
+  margin-top: 40px;
+}
+
+.newad {
+  line-height: 70px;
+}
+
+.panel-body > h2 {
+  margin: 15px;
+}

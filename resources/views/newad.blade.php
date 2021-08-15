@@ -5,6 +5,7 @@
     <!-- Bootstrap Boilerplate... -->
 
     <div class="panel-body">
+        <h2>New advertisement</h2>
         <!-- Display Validation Errors -->
         @include('common.errors')
         @if(Auth::check())

@@ -4,7 +4,8 @@
 
     <!-- Bootstrap Boilerplate... -->
 
-    <div class="panel-body">
+    <div class="panel-body editad">
+        <h2>Edit advertisement</h2>
         <!-- Display Validation Errors -->
         @include('common.errors')
         @if(Auth::check())
